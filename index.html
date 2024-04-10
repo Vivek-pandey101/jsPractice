@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async & Await</title>
+    <style>
+        *{
+            font-family: cursive;
+        }
+    </style>
+</head>
+<body>
+    <h1>Start should change the background colour every second.</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <script>
+        const randomColour = function(){
+            const hexCode = '0123456789ABCDEF';
+            let colour = '#';
+            for(let i=0; i<6;i++){
+                colour += hexCode[Math.floor(Math.random()*16)]
+            }
+            console.log(colour);
+            return colour;
+        }
+
+        let stopIt;
+
+        const colourStartHandle = function(){
+
+            stopIt = setInterval(startChanging,2000)
+
+            function startChanging (){
+            document.body.style.backgroundColor = randomColour()};
+        }
+
+        const colourStopHandle = function(){
+
+            clearInterval(stopIt);
+        }
+
+        document.querySelector('#start').addEventListener('click', colourStartHandle)
+        document.querySelector('#stop').addEventListener('click', colourStopHandle)
+
+    </script>
+</body>
+</html>
